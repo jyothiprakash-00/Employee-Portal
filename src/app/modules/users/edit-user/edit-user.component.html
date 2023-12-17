@@ -1,0 +1,60 @@
+
+
+<div class="d-flex">
+    <div style="height: 89vh;width: 150px;" class="sidebar bg-dark text-light p-3 d-flex flex-column">
+        <a style="text-decoration: none;margin-top: 10px;font-weight: bold;color: white;" routerLink="/dashboard">Home</a>
+        <a style="text-decoration: none;margin-top: 10px;font-weight: bold;color: white;" routerLink="/users">Users</a>
+
+    </div>
+    <div class="dashboard ms-5 p-3 w-100 ">
+        <h1 style="overflow: hidden;">Update User Details</h1> 
+        <form #editUserForm="ngForm">
+            <div>
+            <label for="userid">User Id : </label>
+            <input style="margin-left: 75px;margin-top: 20px;" type="text" id="userid"  name="id" [(ngModel)]="user.id" #uid="ngModel" required pattern="[0-9]*"> 
+            </div> 
+             <!-- ivalid UserId -->
+             <div style="margin-left: 135px;" *ngIf="uid.invalid && uid.touched " class="mb-3 text-danger fw-bolder">
+                *Invalid User ID
+             </div>
+             <!-- ------------ -->
+            <div>
+                <label for="username">User Name : </label>
+                <input style="margin-left: 50px; margin-top: 20px;" type="text" id="username" name="name" [(ngModel)]="user.name" #uname="ngModel" required pattern="[a-zA-Z ]*" > 
+                </div>
+                   <!-- ivalid Name -->
+                   <div style="margin-left: 135px;"  *ngIf="uname.invalid && uname.touched " class="mb-3 text-danger fw-bolder">
+                   *Invalid User Name
+                    </div>
+                    <!-- ------------ -->
+                <div>
+                    <label for="email">E-mail : </label>
+                    <input style="margin-left: 77px; margin-top: 20px;" type="email" id="email"  name="email" [(ngModel)]="user.email" #uemail="ngModel" required email > 
+                    </div>
+                    <!-- ivalid email -->
+                    <div style="margin-left: 135px;"  *ngIf="uemail.invalid && uemail.touched " class="mb-3 text-danger fw-bolder">
+                    *Invalid Email
+                    </div>
+                    <!-- ------------ -->
+                    <div>
+                        <label for="status">Status :</label>
+    
+                     <select style="margin-left: 80px; margin-top: 20px;"  id="status" name="active" [(ngModel)]="user.active" #active="ngModel" required="">
+                        <option disabled selected hidden value=""></option>
+                         <option value="1">Active</option>
+                         <option value="2">InActive</option>
+                     </select>
+                        </div>
+                         <!-- ivalid Status -->
+                        <div style="margin-left: 135px;"  *ngIf="active.invalid && active.touched " class="mb-3 text-danger fw-bolder">
+                        *Invalid Status
+                        </div>
+                        <!-- ------------ -->
+                       <div class="mt-5">
+                            <button (click)="cancel(user.id)" style="margin-left: 150px; background-color: red;" >Cancel</button>
+                            <button (click)="editUser(user.id)" type="submit" [disabled]="editUserForm.invalid" style="margin-left: 50px;background-color: green;">Update</button>
+                       </div>
+       </form>
+              
+    </div>
+</div>

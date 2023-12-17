@@ -1,0 +1,35 @@
+<div style="width: 100%;height: 85vh;background-image: url(https://cdn.wallpapersafari.com//33/98/zdaIor.png);background-size: contain;" class="d-flex justify-content-center align-items-center">
+    <div style="width: 900px;" class="shadow p-5 row rounded bg-light align-items-center">
+        <div class="col-lg-8">
+            <img class="img-fluid" src="https://www.yalgaar.io/Content/themes/Admin/img/login_full_bg.jpg" alt="login img">
+        </div>
+        <div class="col-lg-4">
+            <form #loginForm="ngForm" (ngSubmit)="login()">
+                <h1 style="overflow: hidden;" class="fw-bolder mb-5">Login Form</h1>
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email" [(ngModel)]="email" email required #useremailinput="ngModel">
+                    <label for="floatingInput">E-mail Address</label>
+                </div>
+                <!-- ivalid email -->
+                <div *ngIf="useremailinput.invalid && useremailinput.touched " class="mb-3 text-danger fw-bolder">
+                    *Invalid email
+                </div>
+                <!-- ------------ -->
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="password" name="password" [(ngModel)]="password" required pattern="[a-zA-Z0-9]*" minlength="3" #userpasswordinput="ngModel">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                 <!-- ivalid Password -->
+                 <div *ngIf="userpasswordinput.invalid && userpasswordinput.touched " class="mb-3 text-danger fw-bolder">
+                    *Invalid email
+                </div>
+                <!-- ------------ -->
+                <div class="d-grid">
+                    <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary">Login</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+
+</div>

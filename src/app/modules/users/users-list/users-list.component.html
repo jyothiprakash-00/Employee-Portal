@@ -1,0 +1,69 @@
+<div class="d-flex">
+    <div style="height: 89vh;width: 150px;" class="sidebar bg-dark text-light p-3 d-flex flex-column">
+        <a style="text-decoration: none;margin-top: 10px;font-weight: bold;color: white;" routerLink="/dashboard">Home</a>
+        <a style="text-decoration: none;margin-top: 10px;font-weight: bold;color: white;" routerLink="/users">Users</a>
+
+    </div>
+    <div class="dashboard p-3 w-100">
+       <div class="d-flex">
+            <h1 style="overflow: hidden;">Users List</h1>
+            <button routerLink="add" style="margin-left: 1090px;border-radius: 10px;
+            overflow: hidden;
+            color: #0c0b0b;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bolder;
+            padding: 10px 16px;
+            text-align: center;
+            background-color: green;" ><i class="fa-solid fa-users"></i>Add</button>
+       </div>
+       <div class="d-flex m-3 align-items-center">
+            <span>search : <input type="text" placeholder="Search By User Name" [(ngModel)]="searchKey"> </span>
+         <div>
+                <button class="btn btn-secondary ms-3" mat-button [matMenuTriggerFor]="menu">Sort</button>
+                <mat-menu #menu="matMenu">
+                 <button (click)="sortById()" mat-menu-item>By User Id</button>
+                 <button (click)="sortByName()" mat-menu-item>By User Name</button>
+                </mat-menu>
+         </div>
+         <div>
+            <button (click)="generatePDF()" style="margin-left: 899px;border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bolder;
+            padding: 10px 16px;
+            text-align: center;" class="btn btn-info">Export</button>
+         </div>
+
+       </div>
+        <table class="table mt-5 shadow">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>User Name</th>
+                    <th>E-mail</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of allUsers | search : searchKey | paginate: { itemsPerPage: 5, currentPage: p }" [hidden]="user.id==='1'">
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.email}}</td>
+                    <td><span [ngClass]="user.active=='1'?'btn btn-success':'btn btn-warning'">{{user.active=="1"?"Active":"InActive"}}</span></td>
+                    <td>
+                        <a routerLink="edit/{{user.id}}"><i class="fa-solid fa-pen text-success me-2 btn"></i></a>
+                        <a><i (click)="removeUser(user.id)" class="fa-solid fa-trash text-danger btn"></i></a>
+
+                    </td>
+
+                </tr>
+                <tr *ngIf="(allUsers | search : searchKey).length===0">
+                    <p class="fw-bolder text-danger">User doesnot exists!!!</p>
+                </tr>
+            </tbody>
+        </table>
+       <div class="text-center mt-5"> <pagination-controls (pageChange)="p = $event"></pagination-controls></div>
+    </div>
+</div>

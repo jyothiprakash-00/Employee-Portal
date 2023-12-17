@@ -1,0 +1,108 @@
+    ANGULAR - FRONTEND TECHNOLOGY - SINGLE PAGE APPLICATION
+
+    BASIC COMMANDS 
+    ---------------
+
+    1. To create prjct         : ng new project-name
+    2. To run project          : ng serve or ng s -o                      : (to automatically open the browser)
+    3. to create new component : ng g c component-name                    : (g-generate    c-component)
+    4. to create service       : ng g s service-folderName/service-name
+    5. to create user-module   : ng g m users --route users --module app.module
+    in module folder
+
+
+    BASIC FEATURES
+    ---------------
+
+    1. Module       : used to hold multiple components and helps import packages to design page - Root Module : AppModule
+    2. Components   : is a part of UI, consists of html,css and ts file and its selector to use it in another page Root Components : AppComponent
+    3. Decorators   : to add meta data (data inside another file) , indicated using @
+    4. selector     : to deploy component design in another html file
+    5. Data Binding : Data sharing within a component (html,ts file)
+                  
+                  - One way Binding : 
+                            - component(ts file) to view(html file)
+                                 - String interpolation method   : {{property-name}}
+                                 - property Binding              : bind class propertywith html tag attribute - [attribute] = "property"
+
+                            - view(html file) to component(ts file) 
+                                 - Event Binding                 : use (event-name) = "function-call"  
+                                 - Event Binding                 : use (event-name) = "function-name($event)  : to get events in ts file
+                                 - Event Binding Template Reference Variable   : use #variable-name
+                  - Two way Binding : Data sharing in both direction at the same time
+                            - Template Driven Forms : form will design in html first
+                                 - import formsModule in module file 
+                                 - use ngModel attribute : syntax - [(ngModel)]="class property", if it is in the form tag, must set name attribute of that input tag
+
+                            - Model Driven Forms    : first create form model in ts file
+
+     6. path Set cheyyan --> 
+
+        (i) app-routhing.module.ts
+
+                const routes: Routes = [
+                {
+                    path:'employee',component:EmployeeComponent
+                }
+                ];
+
+        (ii) app.component.html
+
+                <router-outlet></router-outlet>
+          
+     7. routerLink           : used to redirect from one componentto another in a tag (href nnu insted ayit we use routerLink)
+     8. Dependency Injection : When a component and a class are dependenet then dependenet class instance can be assigned to other class in their constructor
+          - syntax : constructor(access-specifier component-property:Dependent class name){}
+
+
+     login il ninn dashboard il pokan --->
+
+          (i)  login.component.ts
+               constructor(private loginRouter: Router){}
+               login(){
+               this.loginRouter.navigateByUrl('dashboard')
+               }
+          (ii) login.component.html
+               (onclick)="login()"
+          
+     9. Angular Services : used to define common logic that can accessed or shared by any component/classes
+    10. Directives : used to provide additional behaviour to html elements ,should start with * symbol,
+          - component directives : same as component selector which used to view  its html in other page
+          - structural directive : used to change html structure by adding/removing html items
+                    - *ngIf=(condition) attribute            : based on a condition to display html elements
+                    - *ngFor=let variable-name of array-name : render a list
+                    - *ngSwitch
+          - attribute directives :used to provide style to html elements
+
+
+
+
+Rxjs --> it resolve asynchronous function
+         by using observable instead of promise
+
+
+         subscribe,next,
+
+         httpClientModule
+
+
+Lifecycle --->
+
+attribute directives:  ngclass
+
+
+jspdf and jspdf-autotable
+
+high chart , material ui for calender
+
+
+property Binding
+
+
+file reader for convert img to url
+
+
+parent to child data sharing --> we use @input -->it can share the properties of parent
+child to parent data sharing --> we use @output --> it can only share events
+
+guard in angular
